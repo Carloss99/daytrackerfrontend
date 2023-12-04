@@ -5,7 +5,7 @@ import Main from './pages/Main'
 import NewTask from './pages/NewTask'
 import Index from './pages/Index'
 
-const apiURL = 'http://localhost:8000'
+const apiURL = 'https://daytracker-18f164454ba5.herokuapp.com'
 
 
 function App() {
@@ -28,6 +28,13 @@ function App() {
     getTasks()
   }
 
+  const deleteTask = async (id) => {
+    const response = await fetch(`${apiURL}/daytracker/${id}`, {
+      method:'delete'
+    })
+    getTasks()
+  }
+
 
   useEffect(() => {
     getTasks()
@@ -39,7 +46,7 @@ function App() {
         <Route exact path='/' element={<Main tasks={tasks}/>}/>
         <Route exact path='/new' element={<NewTask handleSubmit={handleSubmit}/>}/>
 
-        <Route exact path='/:id' element ={<Index tasks={tasks}/>} />
+        <Route exact path='/:id' element ={<Index tasks={tasks} getTasks={getTasks} deleteTask={deleteTask}/>} />
       </Routes>
       
     </div>

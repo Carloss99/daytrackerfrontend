@@ -26,14 +26,36 @@ const NewTask = ({handleSubmit}) => {
 
     const [task, setTask] = useState({
         title: '',
-        notes: '',
+        notes: [''],
         timestart: '',
         timeend: ''
-    }
+    })
+    const [currentNote, setCurrentNote] = useState()
+    const [notes, setNotes]  = useState([''])
+    const [notesCount, setNotesCount] = useState(1)
         
-    )
-    
 
+
+
+    const inputnotes = []
+    const addNote = () => {
+        setNotesCount(prev => (prev+1))
+        for(let i = 0; i < notesCount; i++){
+            inputnotes.push(<input type='text' name='notes' onChange={noteChange}  style={{'height':'3em'}}/>)
+        }
+        
+        notes.push(currentNote)
+    }
+
+
+
+
+
+
+    
+    const noteChange = (event) => {
+        setCurrentNote(event.target.value)
+    }
 
     const handleChange = (event) => {
         setTask((prev) => ({ ...prev, [event.target.name]: event.target.value}))
@@ -41,7 +63,12 @@ const NewTask = ({handleSubmit}) => {
 
     const submitTask = (e) => {
         e.preventDefault()
-        handleSubmit(task)
+        notes.push(currentNote)
+        const newtask = task
+        notes.shift()
+        newtask.notes = notes
+        handleSubmit(newtask)
+        console.log(newtask)
         navigate('/')
     }
 
@@ -50,13 +77,20 @@ const NewTask = ({handleSubmit}) => {
             <form style={formStyle} onSubmit={submitTask}>
                 <label>Task: <input type='text' name='title' onChange={handleChange} /></label>
 
-                <label>Notes: <input type='text' name='notes' onChange={handleChange}  style={{'height':'3em'}}/></label>
+                
+                
+                {notes.map((note) => (<input type='text' name='notes' onChange={noteChange}  style={{'height':'3em'}}/>))}
+
+                <button type='button' onClick={addNote}>+</button>
+                
 
                 <label>Start: <input type='time' name='timestart' onChange={handleChange}/></label>
                 
                 <label>End: <input type='time' name='timeend'  onChange={handleChange}/></label>
 
                 <input type='submit' />
+
+                
 
                 
                 
