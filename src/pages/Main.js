@@ -6,6 +6,11 @@ import Sidebar from '../components/Sidebar'
 import {useParams} from 'react-router-dom'
 
 const Main = ({tasks, currentWeekDay}) => {
+    const date = () => {
+        const date = new Date()
+
+        return(`${date.getDate()-1}`)
+    }
 
     const params = useParams()
     let dateSelected = currentWeekDay
@@ -31,6 +36,7 @@ const Main = ({tasks, currentWeekDay}) => {
                         })}
                          <Link to='/new' ><button class='ring-2 ring-orange-500 hover:bg-orange-500 p-1 rounded-md'>Add new Task</button></Link>
                     </div>
+                    
                
             
             </div>
