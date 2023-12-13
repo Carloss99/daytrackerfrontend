@@ -1,32 +1,15 @@
 import {Link} from 'react-router-dom'
 
 
-const Task = ({title, notes,id, timestart, timeend}) => {
-    const taskStyle = {
-        'border': '1px solid black',
-        'margin': '2em auto',
-        'width': '60vw',
-        'padding':'0 2em',
-        'color': '#27374D',
-        'borderRadius': '20px'
-    }
-
-    
-
-    const taskheader = {
-        'display': 'flex',
-        'justify-content': 'space-between',
-        
-    }
-
-    
+const Task = ({title,id, timestart, timeend, complete}) => {
+   
 
 return(
-    <div className='task' style={taskStyle}>
-        <div style={taskheader}>
-            <h3>{id}</h3>
-            <h3> <Link to={`/${id}`}>{title}</Link> </h3>
+    <div  class='my-10 border-2 border-sky-400 rounded-md px-4 py-8 '>
+        <div class='flex justify-between '>
+            <h3> <Link to={`/index/${id}`}  class='text-white' >{title}</Link> </h3>
             <h3>{timestart} - {timeend}</h3>
+            <input type='checkbox' value={complete}/>
         </div>
         
 

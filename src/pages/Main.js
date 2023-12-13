@@ -1,45 +1,41 @@
 import Task from '../components/Task'
 import {Link} from 'react-router-dom'
+import {useState} from 'react'
+import Sidebar from '../components/Sidebar'
 
-const Main = ({tasks}) => {
+import {useParams} from 'react-router-dom'
 
+const Main = ({tasks, currentWeekDay}) => {
 
-    const dateStyle = {
-        'margin': 'auto',
-        'width': '60vw',
+    const params = useParams()
+    let dateSelected = currentWeekDay
+
+    //checks to see if params has a value
+    if(Object.keys(params).length !== 0){
+        dateSelected = params.weekday
     }
-
-
-    const getCurrentDate = () => {
-        const date = new Date()
-        const day = date.getDate()
-        const month = date.toLocaleString('default', { month: 'long' })
-        const year = date.getFullYear()
-
-
-        return (`${month} ${day}, ${year}`)
-    }
-
-    const mainheader = {
-        'display': 'flex',
-        'width': '60vw',
-        'margin': 'auto',
-        'color':'#27374D'
-    }
-
-
-
+    console.log(dateSelected)
+   
     return(
-        <div className='main'>
-            <div style={mainheader}>
-                <h3 style={dateStyle}>{getCurrentDate()}</h3>
-                <Link to='/new'><button style={{'width': '10em'}}>Add new Task</button></Link>
-            </div>
+        <div class='font-bold'>
+            <h3 class='text-2xl text-center my-2'> {dateSelected}</h3>
+                <div  class='flex justify-around '>
+                <Sidebar currentWeekDay={dateSelected}/>
+                
+                    <div class='w-1/2'>
+                        {tasks.map((task,index) => {
+                           if(task.date.includes(dateSelected)){
+                              return(<Task title={task.title} notes={task.notes} id={task.id} timestart={task.timestart} timeend={task.timeend} complete={task.complete}  />)
+                            }
+                        
+                        })}
+                         <Link to='/new' ><button class='ring-2 ring-orange-500 hover:bg-orange-500 p-1 rounded-md'>Add new Task</button></Link>
+                    </div>
+               
             
-            {tasks.map((task) => (
-                <Task title={task.title} notes={task.notes} id={task.id} timestart={task.timestart} timeend={task.timeend}/>
-            ))}
+            </div>
         </div>
+       
     )
 }
 

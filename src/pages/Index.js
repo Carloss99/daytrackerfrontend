@@ -4,25 +4,7 @@ import {useState ,useEffect} from 'react'
 
 
 const Index = ({tasks, getTasks, deleteTask}) => {
-    const indexStyle = {
-        'height': '40vw',
-        'width': '60vw',
-        'border': '1px solid black',
-        'margin': 'auto',
-        'padding': '0 1em 1em 1em',
-        'background': '#27374D'
-    }
 
-    const h2Style = {
-        'borderRadius': '15px',
-        'textAlign': 'center',
-    }
-
-    const notesStyle = {
-        'borderRadius': '15px',
-        'padding':'0 2em 2em 2em '
-    }
- 
 
     const params = useParams()
     const navigate = useNavigate()
@@ -37,28 +19,31 @@ const Index = ({tasks, getTasks, deleteTask}) => {
     }
 
 
+    const handleReturn = () => {
+        navigate('/')
+    }
 
-
-
+    const handleEdit = () => {
+        navigate(`/edit/${currentTask.id}`)
+    }
 
     useEffect(() => {
         getTasks()
     },[])
+    
     return(
-        <div style={indexStyle}>
-            <h2 style={h2Style}>{currentTask.title}</h2>
-            <div style={notesStyle}>
-                <div style={{'textAlign':'center'}}>Notes</div>
-                <ul>
-                    {currentTask.notes.map(note => (
-                        <li>{note}</li>
-                    ))}
-                </ul>
+        <div class='w-3/4 h-3/4 m-auto border-2 border-black rounded-xl bg-zinc-700 flex flex-col justify-around'>
+            <h2 class='text-center my-8 text-2xl'>{currentTask.title}</h2>
+            <div class=' h-32 p-4 mx-2 border-2 border-zinc-500 rounded-lg '>
+                {currentTask.notes}
             </div>
             
-            <form onSubmit={handleDelete}>
-                <input type='submit' value='delete'/>
+            <form onSubmit={handleDelete} class='flex justify-around w-9/12 m-auto'>
+                <input type='submit' value='Delete' class='ring-2 ring-orange-500 rounded-md p-2'/>
+                <button type='button' onClick={handleReturn} class='ring-2 ring-orange-500 rounded-md p-2'>Return</button>
+                <button type='button' onClick={handleEdit}class='ring-2 ring-orange-500 rounded-md p-2'>Edit</button>
             </form>
+
             
         </div>
     )

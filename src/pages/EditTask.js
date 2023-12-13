@@ -1,52 +1,39 @@
-import {useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+import {useMemo, useEffect, useState} from 'react'
+import {useParams, useNavigate} from 'react-router-dom'
 
 
+const EditTask = ({getTasks,tasks, handleSubmit, formType}) => {
 
-const NewTask = ({handleSubmit, formType, currentWeekDay}) => {
+    const params = useParams()
     const navigate = useNavigate()
 
-    // const dateToday = () => {
-    //     const date = new Date()
-    //     return(`${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`)
-    // }
+    const currentTask = useMemo(() => tasks.find(task => task.id === parseInt(params.id)), [params.id])
 
-    const formContainerStyle = {
-        'width': '20em',
-        'margin': 'auto',
-    }
-    const formStyle = {
-        'height':'100%',
-        'display':'flex',
-        'flex-direction': 'column',
-        'align-items': 'center',
-        'justify-content': 'center',
-        'gap':'2em'
-    }
-    
     const [task, setTask] = useState({
-        title: '',
-        notes: '',
-        timestart: '',
-        timeend: '',
-        date: currentWeekDay,
-        complete: false
+        id: currentTask.id,
+        title: currentTask.title,
+        notes: currentTask.notes,
+        timestart: currentTask.timestart,
+        timeend: currentTask.timeend,
+        date: currentTask.date,
+        complete: currentTask.complete
     })
-
-    
 
     const handleChange = (event) => {
         setTask((prev) => ({ ...prev, [event.target.name]: event.target.value}))
-        
     }
 
     const submitTask = (e) => {
         e.preventDefault()
-        console.log(task)
+    
         handleSubmit(task, formType)
         navigate('/')
     }
 
+    useEffect(() => {
+        getTasks()
+    },[])
+    
     return(
         <div className='newtaskform' class='w-1/2 mx-auto my-12 border-2 border-zinc-500 rounded-xl p-6 font-bold '>
             <form class='flex flex-col gap-8 text-black' onSubmit={submitTask}>
@@ -90,4 +77,4 @@ const NewTask = ({handleSubmit, formType, currentWeekDay}) => {
     )
 }
 
-export default NewTask
+export default EditTask
