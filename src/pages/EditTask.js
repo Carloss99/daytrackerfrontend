@@ -35,11 +35,11 @@ const EditTask = ({getTasks,tasks, handleSubmit, formType}) => {
     },[])
     
     return(
-        <div className='newtaskform' class='w-1/2 mx-auto my-12 border-2 border-zinc-500 rounded-xl p-6 font-bold '>
+        <div className='newtaskform' class='w-1/2 mx-auto my-6 border-2 border-orange-500 rounded-xl px-6 py-12 font-bold '>
             <form class='flex flex-col gap-8 text-black' onSubmit={submitTask}>
                 <div class='flex justify-around' >
                     <label class='text-white text-xl'>Day: </label> 
-                    <select name='date' onChange={handleChange} class='rounded-xl text-black w-1/2'>
+                    <select name='date' onChange={handleChange} class='rounded-xl text-black w-1/2 p-2'>
                      <option value='Sunday'>Sunday</option>
                     <option value='Monday'>Monday</option>
                     <option value='Tuesday'>Tuesday</option>
@@ -52,23 +52,23 @@ const EditTask = ({getTasks,tasks, handleSubmit, formType}) => {
 
                 <div class='flex justify-around'>
                     <label class='text-white text-xl'>Task: </label>
-                    <input type='text' name='title' onChange={handleChange} class='rounded-xl w-1/2' required />
+                    <input type='text' name='title' onChange={handleChange} class='rounded-xl w-1/2 p-2' required />
                 </div>
 
                 <div class='flex justify-around'>
                     <label class='text-white text-xl'>Note:</label>
-                    <input type='text' name='notes' onChange={handleChange} class='rounded-xl w-1/2' required />
+                    <input type='text' name='notes' onChange={handleChange} class='rounded-xl w-1/2 h-16 p-2' required />
                 </div>
 
 
                 <div class='flex justify-around'>
                     <label class='text-white text-xl'>Start: </label>
-                    <input type='time' name='timestart' onChange={handleChange} class='rounded-xl w-1/2 text-center' required />
+                    <input type='time' name='timestart' onChange={handleChange} class='rounded-xl w-1/2 text-center p-2' required />
                 </div>
                 
                 <div class='flex justify-around'>
                     <label class='text-white text-xl'>End: </label>
-                    <input type='time' name='timeend'  onChange={handleChange} class='rounded-xl w-1/2 text-center' required />
+                    <input type='time' name='timeend'  onChange={handleChange} class='rounded-xl w-1/2 text-center p-2' required />
                 </div>
 
                 <input class='ring-2 ring-orange-500 rounded-md p-2 text-white w-1/2 m-auto hover:bg-orange-500' type='submit' />
