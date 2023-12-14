@@ -34,7 +34,7 @@ const Main = ({tasks, currentWeekDay}) => {
                             }
                         
                         })}
-                         <Link to='/new' ><button class='ring-2 ring-orange-500 hover:bg-orange-500 p-1 rounded-md'>Add new Task</button></Link>
+                         <Link to='/new' ><button class='ring-2 ring-orange-500 hover:bg-orange-500 p-1 rounded-md text-xs sm:text-lg'>Add new Task</button></Link>
                     </div>
                     
                

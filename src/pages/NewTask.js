@@ -30,10 +30,10 @@ const NewTask = ({handleSubmit, formType, currentWeekDay}) => {
     }
 
     return(
-        <div className='newtaskform' class='w-1/2 mx-auto my-6 border-2 border-orange-500 rounded-xl px-6 py-12 font-bold '>
+        <div className='newtaskform' class='w-11/12 sm:w-3/4 mx-auto my-6 border-2 border-orange-500 rounded-xl  py-12 font-bold text-xs sm:text-base'>
             <form class='flex flex-col gap-8 text-black' onSubmit={submitTask}>
                 <div class='flex justify-around' >
-                    <label class='text-white text-xl'>Day: </label> 
+                    <label class='text-white text-base sm:text-2xl'>Day: </label> 
                     <select name='date' onChange={handleChange} class='rounded-xl text-black w-1/2 p-2'>
                      <option value='Sunday'>Sunday</option>
                     <option value='Monday'>Monday</option>
@@ -46,23 +46,23 @@ const NewTask = ({handleSubmit, formType, currentWeekDay}) => {
                 </div>
 
                 <div class='flex justify-around'>
-                    <label class='text-white text-xl'>Task: </label>
+                    <label class='text-white text-base sm:text-2xl'>Task: </label>
                     <input type='text' name='title' onChange={handleChange} class='rounded-xl w-1/2 p-2' required />
                 </div>
 
                 <div class='flex justify-around'>
-                    <label class='text-white text-xl'>Note:</label>
+                    <label class='text-white text-base sm:text-2xl'>Note:</label>
                     <input type='text' name='notes' onChange={handleChange} class='rounded-xl w-1/2 h-16 p-2' required />
                 </div>
 
 
                 <div class='flex justify-around'>
-                    <label class='text-white text-xl'>Start: </label>
+                    <label class='text-white text-base sm:text-2xl'>Start: </label>
                     <input type='time' name='timestart' onChange={handleChange} class='rounded-xl w-1/2 text-center p-2' required />
                 </div>
                 
                 <div class='flex justify-around'>
-                    <label class='text-white text-xl'>End: </label>
+                    <label class='text-white text-base sm:text-2xl'>End: </label>
                     <input type='time' name='timeend'  onChange={handleChange} class='rounded-xl w-1/2 text-center p-2' required />
                 </div>
 
