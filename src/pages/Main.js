@@ -27,14 +27,22 @@ const Main = ({tasks, currentWeekDay}) => {
                 <div  class='flex justify-around '>
                 <Sidebar currentWeekDay={dateSelected}/>
                 
-                    <div class='w-1/2'>
+                    <div class='w-2/4'>
+                        
                         {tasks.map((task,index) => {
                            if(task.date.includes(dateSelected)){
-                              return(<Task title={task.title} notes={task.notes} id={task.id} timestart={task.timestart} timeend={task.timeend} complete={task.complete}  />)
+                              return(
+                              <div class='flex justify-around w-full border-2 border-sky-400 rounded-md my-8'>
+                                <Link to={`/index/${task.id}`} class='w-full'>
+                                    <Task title={task.title} notes={task.notes} id={task.id} timestart={task.timestart} timeend={task.timeend} complete={task.complete}  />
+                                </Link>
+                                <input type='checkbox' class='mr-4' value={task.complete}/>
+                                </div>)
                             }
                         
                         })}
-                         <Link to='/new' ><button class='ring-2 ring-orange-500 hover:bg-orange-500 p-1 rounded-md text-xs sm:text-lg'>Add new Task</button></Link>
+                        
+                         <Link to='/new' ><button class='ring-2 ring-orange-500  hover:bg-orange-500 p-1 rounded-md text-xs sm:text-lg'>Add new Task</button></Link>
                     </div>
                     
                

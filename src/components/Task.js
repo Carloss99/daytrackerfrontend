@@ -25,15 +25,10 @@ const Task = ({title,id, timestart, timeend, complete}) => {
       }
 
 return(
-    <div className='task' class='my-10 border-2 border-sky-400 rounded-md px-1 py-4 text-xs sm:text-base sm:px-4 sm:py-8'>
-        <div class='flex justify-between text-center flex-col sm:flex-row'>
-            <h3> <Link to={`/index/${id}`}  class='text-white' >{title}</Link> </h3>
-            <h3>{time(timestart)} - {time(timeend)}</h3>
-            <input type='checkbox' value={complete}/>
-            
-        </div>
+    <div className='task' class=' text-xs sm:text-base sm:py-8 flex justify-around flex-col sm:flex-row'>
         
-
+            <h3> <Link to={`/index/${id}`}  class='text-white ' >{title}</Link> </h3>
+            <h3>{time(timestart)} - {time(timeend)}</h3>
         
     </div>
 )
